@@ -112,5 +112,3 @@ Here, you can start the load test and see the results.
 ## Contributing
 
 Contributions are welcome. Please open a pull request and we will respond at the earliest.
-
-
