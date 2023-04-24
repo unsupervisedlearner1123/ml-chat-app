@@ -17,7 +17,6 @@ This is a Flask application that works like a chatbot and pings OpenAI's API. It
 ```
 git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git
 cd YOUR_REPO
-
 ```
 
 2. Create a virtual environment and activate it:
