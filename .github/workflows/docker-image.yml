@@ -8,11 +8,23 @@ on:
 
 jobs:
 
-  build:
+#   build:
 
+#     runs-on: ubuntu-latest
+
+#     steps:
+#     - uses: actions/checkout@v3
+#     - name: Build the Docker image
+#     - run: docker build . --file Dockerfile --tag testimg4:$(date +%s)
+  build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag testimg4:$(date +%s)
+    - run: docker build . --file Dockerfile --tag testimg4:$(date +%s)
+    - uses: jwalton/gh-ecr-push@v1
+    - name: Push to ECR
+      with:
+        access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        region: us-east-1
+        image: my-image:v1
