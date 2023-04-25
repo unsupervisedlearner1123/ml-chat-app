@@ -8,7 +8,7 @@ This is a Flask application that works like a chatbot and pings OpenAI's API. It
 * OpenAI API key
 * Docker
 * Kubernetes command-line tool (kubectl)
-* AWS command-line tool (aws)
+* AWS command-line tool (aws) 
 
 ## Setup
 
