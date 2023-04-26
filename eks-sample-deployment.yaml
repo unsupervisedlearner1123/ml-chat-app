@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: eks-sample-linux-deployment
-  namespace: eks-test-flask-app
+  namespace: eks-sample-app
   labels:
     app: eks-sample-linux-app
 spec:
@@ -26,11 +26,11 @@ spec:
                 - amd64
                 - arm64
       containers:
-      - name: test
-        image: public.ecr.aws/l7a6c1x5/repoformlchatapp:latest
+      - name: nginx
+        image: public.ecr.aws/nginx/nginx:1.21
         ports:
         - name: http
-          containerPort: 8080
+          containerPort: 80
         imagePullPolicy: IfNotPresent
       nodeSelector:
         kubernetes.io/os: linux
