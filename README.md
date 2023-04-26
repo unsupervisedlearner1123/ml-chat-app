@@ -50,7 +50,7 @@ export OPENAI_API_KEY=YOUR_API_KEY
 
 Replace YOUR_API_KEY with your OpenAI API key.
 
-55. Run the app locally:
+5. Run the app locally:
 
 ```
 export FLASK_APP=app.py
