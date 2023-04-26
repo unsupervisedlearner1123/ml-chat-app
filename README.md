@@ -1,3 +1,5 @@
+[![Docker Image CI](https://github.com/unsupervisedlearner1123/ml-chat-app/actions/workflows/docker-image.yml/badge.svg)](https://github.com/unsupervisedlearner1123/ml-chat-app/actions/workflows/docker-image.yml)
+
 # Flask Chatbot with OpenAI
 
 This is a Flask application that works like a chatbot and pings OpenAI's API. It is deployed to an AWS EKS cluster and has Elastic Scale-Up Performance via Load Test with Locust.
