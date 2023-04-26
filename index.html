@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lenina</title>
+    <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+    <link rel='stylesheet'
+        href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css'>
+    <link rel='stylesheet'
+        href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/4.0.2/bootstrap-material-design.css'>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+    <link rel="stylesheet" href="style.css">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js'></script>
+    <script src="script.js"></script>
+</head>
+
+<body>
+
+    <div id="chat-circle">
+        <div id="chat-overlay"></div>
+        <i class="material-icons">question_answer</i>
+    </div>
+
+    <div class="chat-box">
+        <div class="chat-box-header">
+            Ask Lenina
+            <div class="chat-box-toggle"><i class="material-icons">close</i>
+            </div>
+        </div>
+
+        <div class="chat-box-body">
+            <div class="chat-box-overlay">
+            </div>
+            <div id="textarea" class="chat-logs">
+
+            </div><!--chat-log -->
+        </div>
+
+        <div class="chat-input">
+            <input type="text" id="chat-input" name="question" placeholder="Record your speech." />
+            <button type="submit" class="chat-submit" id="chat-submit" value=request onclick='send()'><i
+                    class="material-icons">send</i></button>
+        </div>
+    </div>
+
+
+    <script>
+        async function send() {
+
+            // const input = document.querySelector('input').value;
+            // alert(input);
+
+            const speech = await fetch('/speech')
+
+            let data = await speech.text();
+
+            const resp = await fetch('/lenina/answer', {   // https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+                body: JSON.stringify({ question: data }),  // Converting data into a string to send to server cols="15" rows="5"
+                headers: { 'Content-Type': 'application/json' },
+                method: 'POST'
+            })
+            const text = await resp.text();
+            const inp = document.createElement("div");
+            const div = document.createElement("div");
+            //<img src = 'static/user.png'>
+            //<img src = '{{url_for('static', filename='qoomlogo.jpeg')}}'>
+            inp.innerText = "You: " + String(data) + "\n\n";
+            document.querySelector('#textarea').appendChild(inp);
+            div.innerText = "Lenina: " + text + "\n\n";
+            document.querySelector('#textarea').appendChild(div);
+            var element = document.getElementById('textarea');
+            element.scrollTop = element.scrollHeight;
+
+        }
+    </script>
+
+</body>
+
+</html>
