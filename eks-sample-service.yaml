@@ -6,10 +6,10 @@ metadata:
   labels:
     app: eks-sample-linux-app
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: eks-sample-linux-app
   ports:
-    - nodePort: 31479
+    - protocol: TCP
       port: 80
       targetPort: 80
