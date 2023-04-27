@@ -3,6 +3,9 @@ kind: Service
 metadata:
   name: eks-sample-linux-service
   namespace: default
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: external
+    service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
   labels:
     app: eks-sample-linux-app
 spec:
