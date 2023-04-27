@@ -26,10 +26,10 @@ spec:
                 - amd64
                 - arm64
       containers:
-      - name: repoformlchatapp2
-        image: public.ecr.aws/l7a6c1x5/repoformlchatapp2:latest
+      - name: nginx
+        image: public.ecr.aws/nginx/nginx:1.21
         ports:
-        - name: http
+        - name: tcp
           containerPort: 80
         imagePullPolicy: IfNotPresent
       nodeSelector:
