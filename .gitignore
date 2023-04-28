@@ -1,4 +1,5 @@
 # Custom
+eks/
 .DS_Store
 aws
 awscliv2.zip
