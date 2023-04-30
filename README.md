@@ -6,9 +6,15 @@
 
 This project is a Flask application that uses SpeechRecognizer and OpenAI APIs to create a voice chatbot. The chatbot can respond to user input in natural language and is designed to be scalable using AWS EKS and load testing with Locust.
 
-## High level Architecture
+## High Level Architecture of ChatBot application
 
 ![Alt text](images/asset-ce8d8887-7317-4312-bb13-0fe34cd7e1d0.png "Architecture")
+
+
+## Deployment Architecture of ChatBot application
+
+![Alt text](images/kubernetes_archi.png "CICD")
+
 
 ## Requirements
 
