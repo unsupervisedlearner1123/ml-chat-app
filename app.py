@@ -1,4 +1,3 @@
-from flask import Flask, request, session
 from flask import Flask, request, Response
 import os
 import openai
