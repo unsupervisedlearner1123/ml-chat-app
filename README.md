@@ -4,7 +4,7 @@
 
 **Developers:** Deekshita Saikia, Jaya Khan, Satvik Kishore
 
-This project is a Flask application that uses SpeechRecognizer and OpenAI APIs to create a voice chatbot. The chatbot can respond to user input in natural language and is designed to be scalable using AWS EKS and load testing with Locust.
+This project is a Flask application that uses SpeechRecognizer and OpenAI APIs to create a voice chatbot. The chatbot can respond to user input in natural language and is designed to be scalable using Azure Kubernetes Service (AKS) and load testing with Locust.
 
 ## High Level Architecture of ChatBot application
 
@@ -22,7 +22,7 @@ This project is a Flask application that uses SpeechRecognizer and OpenAI APIs t
 * OpenAI API key
 * Docker
 * Kubernetes command-line tool (kubectl)
-* AWS command-line tool (aws) 
+* Azure command-line tool (Azure CLI) 
 
 ## Getting Started
 
@@ -63,11 +63,11 @@ export FLASK_APP=app.py
 flask run
 ```
 
-The app will be available at http://localhost:5000/.
+The app will be available at http://localhost:80/.
 
 ## Deployment
 
-To deploy the chatbot to an AWS EKS cluster, follow these steps:
+To deploy the chatbot to an AKS cluster, follow these steps:
 
 1. Build the Docker image:
 
@@ -86,24 +86,21 @@ docker push YOUR_REGISTRY_URL/YOUR_IMAGE_NAME
 
 Replace YOUR_REGISTRY_URL with the URL of your Docker registry.
 
-3. Create an EKS cluster in your AWS account.
+3. Create an AKS cluster in your Azure account.
 
-4. Deploy the app to EKS:
+4. Deploy the app to AKS:
 
 ```
-aws eks update-kubeconfig --name YOUR_CLUSTER_NAME --region YOUR_REGION
-kubectl apply -f kubernetes/
+kubectl apply -f azdeploy.yaml
 ```
-
-Replace YOUR_CLUSTER_NAME and YOUR_REGION with the name and region of your EKS cluster.
 
 5. Access the app:
 
 ```
-kubectl get svc chatbot-service
+kubectl get service chatapp-front2 --watch
 ```
 
-This will return the DNS name of the load balancer service. Use this to access the app in your web browser.
+This will return the IP address where the service is deployed to. Use this to access the app in your web browser.
 
 ## Load Testing
 
@@ -118,10 +115,10 @@ pip install locust
 2. Run Locust:
 
 ```
-locust --host=http://YOUR_LOAD_BALANCER_DNS_NAME
+locust --host=http://<external-ip-address>
 ```
 
-Replace YOUR_LOAD_BALANCER_DNS_NAME with the DNS name of your EKS load balancer service.
+Replace <external-ip-address> with the IP address that the service is running at.
 
 3. Access the Locust web interface in your browser:
 
